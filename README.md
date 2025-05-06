@@ -126,55 +126,59 @@ At the conclusion of a session, a full save snapshot is taken. This includes:
 
 ```json
 {
-	"turn": 4,
-  	"players": [
-		{ 
-			"id": "young",
-			"hp": 6,
-			"stress": 2,
-			"weapon": "m41a"
-		},
-		{ 
-			"id": "doc",
-			"hp": 4,
-			"condition": "burned"
-		}
-	],
-  	"enemies": [
-  		{
-			"type": "xenomorph",
-			"variant": "drone",
-			"hp": 8,
-			"status": ["aggressive", "injured leg"]
-			}
-	],
-  	"scene": {
-  		"location": "airlock_bay",
-  		"features": [
-			"low_gravity",
-			"flickering_lights"
-		]
- 	 },
-  	"log": [
-		"Young fires his pulse rifle, hitting the xenomorph.",
-		"Doc stumbles behind a crate."]
+  "turn": 4,
+  "players": [
+    {
+      "id": "young",
+      "hp": 6,
+      "stress": 2,
+      "weapon": "m41a"
+    },
+    {
+      "id": "doc",
+      "hp": 4,
+      "condition": "burned"
+    }
+  ],
+  "enemies": [
+    {
+      "type": "xenomorph",
+      "variant": "drone",
+      "hp": 8,
+      "status": [
+        "aggressive",
+        "injured leg"
+      ]
+    }
+  ],
+  "scene": {
+    "location": "airlock_bay",
+    "features": [
+      "low_gravity",
+      "flickering_lights"
+    ]
+  },
+  "log": [
+    "Young fires his pulse rifle, hitting the xenomorph.",
+    "Doc stumbles behind a crate."
+  ]
 }
 ```
 
 ### **Example Python Stub**:
 ```py
 class Player:
-    def __init__(self, name, hp, stress):
-        self.name = name
-        self.hp = hp
-        self.stress = stress
+  def __init__(self, name, hp, stress):
+    self.name = name
+    self.hp = hp
+    self.stress = stress
 
-    def to_dict(self):
-        return {"name": self.name, "hp": self.hp, "stress": self.stress}
+  def to_dict(self):
+    return {"name": self.name, "hp": self.hp, "stress": self.stress}
 
-    @staticmethod
-    def from_dict(data):
-        return Player(data["name"], data["hp"], data["stress"])
+  @staticmethod
+  def from_dict(data):
+    return Player(data["name"], data["hp"], data["stress"])
 ```
 
 * **LLM Interface Strategy**:
@@ -226,7 +230,9 @@ class Player:
       "steel crates for cover",
       "sparking conduit in far corner"
     ],
-    "status_effects": ["low_oxygen"]
+    "status_effects": [
+      "low_oxygen"
+    ]
   },
   "players": [
     {
@@ -251,7 +257,9 @@ class Player:
           "defense": 2
         }
       ],
-      "status_effects": ["in_cover"]
+      "status_effects": [
+        "in_cover"
+      ]
     }
   ],
   "enemies": [
@@ -261,8 +269,14 @@ class Player:
       "health": 7,
       "max_health": 12,
       "location": "catwalk",
-      "traits": ["stealthy", "aggressive", "acidic_blood"],
-      "status_effects": ["stalking"]
+      "traits": [
+        "stealthy",
+        "aggressive",
+        "acidic_blood"
+      ],
+      "status_effects": [
+        "stalking"
+      ]
     }
   ],
   "turn_context": {
@@ -278,7 +292,6 @@ class Player:
     "description": "Reyes dove behind a steel crate after dodging a claw swipe."
   }
 }
-
 ```
 
 
